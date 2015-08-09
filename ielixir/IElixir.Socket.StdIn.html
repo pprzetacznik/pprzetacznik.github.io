@@ -33,16 +33,25 @@
 
       <ul class="summary_links">
         
-          <li><a href="#summary">Summary</a></li>
         
-        
-        
-          <li><a href="#functions_details">Functions</a></li>
         
         
         
       </ul>
 
+      
+        <section id="moduledoc" class="docstring">
+          <p>“Stdin: this ROUTER socket is connected to all frontends, and it allows
+the kernel to request input from the active frontend when raw_input()
+is called. The frontend that executed the code has a DEALER socket that acts
+as a ‘virtual keyboard’ for the kernel while this communication is happening
+(illustrated in the figure by the black outline around the central keyboard).
+In practice, frontends may display such kernel requests using a special input
+widget or otherwise indicating that the user is to type input for the kernel
+instead of normal commands in the frontend.”
+From <a href="https://ipython.org/ipython-doc/dev/development/messaging.html">https://ipython.org/ipython-doc/dev/development/messaging.html</a></p>
+
+        </section>
       
 
       
@@ -50,40 +59,9 @@
       
 
       
-        <h2 id="summary">Summary<span class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></span></h2>
-        <table class="summary">
-          <tr>
-  <td class="summary_signature"><a href="#start_link/1">start_link(opts)</a></td>
-  
-</tr>
-
-        </table>
-      
 
       
 
-      
-        <section id="functions_details" class="details_list">
-          <h2>Functions</h2>
-          <section class="detail">
-  <div class="detail_header" id="start_link/1">
-    <span class="signature"><strong>start_link(opts)</strong></span>
-    <div class="detail_header_links">
-      <span class="detail_type">(function)</span>
-      <a href="#start_link/1" class="detail_link" title="Link to this function">#</a>
-      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
-    </div>
-  </div>
-  
-  <section class="docstring">
-    
-  </section>
-  
-    <a href="https://github.com/pprzetacznik/IElixir/blob/master/lib/ielixir/socket/stdin.ex#L5" class="view_source">Source</a>
-  
-</section>
-
-        </section>
       
 
       

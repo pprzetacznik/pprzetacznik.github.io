@@ -33,16 +33,22 @@
 
       <ul class="summary_links">
         
-          <li><a href="#summary">Summary</a></li>
         
-        
-        
-          <li><a href="#functions_details">Functions</a></li>
         
         
         
       </ul>
 
+      
+        <section id="moduledoc" class="docstring">
+          <p>“Shell: this single ROUTER socket allows multiple incoming connections from
+frontends, and this is the socket where requests for code execution, object
+information, prompts, etc. are made to the kernel by any frontend.
+The communication on this socket is a sequence of request/reply actions from
+each frontend and the kernel.”
+From <a href="https://ipython.org/ipython-doc/dev/development/messaging.html">https://ipython.org/ipython-doc/dev/development/messaging.html</a></p>
+
+        </section>
       
 
       
@@ -50,145 +56,9 @@
       
 
       
-        <h2 id="summary">Summary<span class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></span></h2>
-        <table class="summary">
-          <tr>
-  <td class="summary_signature"><a href="#send_complete_reply/3">send_complete_reply(sock, message, arg)</a></td>
-  
-</tr>
-<tr>
-  <td class="summary_signature"><a href="#send_execute_reply/3">send_execute_reply(sock, message, execution_count)</a></td>
-  
-</tr>
-<tr>
-  <td class="summary_signature"><a href="#send_execute_reply/5">send_execute_reply(sock, message, execution_count, exception_name, traceback)</a></td>
-  
-</tr>
-<tr>
-  <td class="summary_signature"><a href="#send_is_complete_reply/3">send_is_complete_reply(sock, message, status)</a></td>
-  
-</tr>
-<tr>
-  <td class="summary_signature"><a href="#send_message/4">send_message(sock, message, message_type, content)</a></td>
-  
-</tr>
-<tr>
-  <td class="summary_signature"><a href="#start_link/1">start_link(opts)</a></td>
-  
-</tr>
-
-        </table>
-      
 
       
 
-      
-        <section id="functions_details" class="details_list">
-          <h2>Functions</h2>
-          <section class="detail">
-  <div class="detail_header" id="send_complete_reply/3">
-    <span class="signature"><strong>send_complete_reply(sock, message, arg)</strong></span>
-    <div class="detail_header_links">
-      <span class="detail_type">(function)</span>
-      <a href="#send_complete_reply/3" class="detail_link" title="Link to this function">#</a>
-      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
-    </div>
-  </div>
-  
-  <section class="docstring">
-    
-  </section>
-  
-    <a href="https://github.com/pprzetacznik/IElixir/blob/master/lib/ielixir/socket/shell.ex#L118" class="view_source">Source</a>
-  
-</section>
-<section class="detail">
-  <div class="detail_header" id="send_execute_reply/3">
-    <span class="signature"><strong>send_execute_reply(sock, message, execution_count)</strong></span>
-    <div class="detail_header_links">
-      <span class="detail_type">(function)</span>
-      <a href="#send_execute_reply/3" class="detail_link" title="Link to this function">#</a>
-      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
-    </div>
-  </div>
-  
-  <section class="docstring">
-    
-  </section>
-  
-    <a href="https://github.com/pprzetacznik/IElixir/blob/master/lib/ielixir/socket/shell.ex#L98" class="view_source">Source</a>
-  
-</section>
-<section class="detail">
-  <div class="detail_header" id="send_execute_reply/5">
-    <span class="signature"><strong>send_execute_reply(sock, message, execution_count, exception_name, traceback)</strong></span>
-    <div class="detail_header_links">
-      <span class="detail_type">(function)</span>
-      <a href="#send_execute_reply/5" class="detail_link" title="Link to this function">#</a>
-      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
-    </div>
-  </div>
-  
-  <section class="docstring">
-    
-  </section>
-  
-    <a href="https://github.com/pprzetacznik/IElixir/blob/master/lib/ielixir/socket/shell.ex#L107" class="view_source">Source</a>
-  
-</section>
-<section class="detail">
-  <div class="detail_header" id="send_is_complete_reply/3">
-    <span class="signature"><strong>send_is_complete_reply(sock, message, status)</strong></span>
-    <div class="detail_header_links">
-      <span class="detail_type">(function)</span>
-      <a href="#send_is_complete_reply/3" class="detail_link" title="Link to this function">#</a>
-      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
-    </div>
-  </div>
-  
-  <section class="docstring">
-    
-  </section>
-  
-    <a href="https://github.com/pprzetacznik/IElixir/blob/master/lib/ielixir/socket/shell.ex#L129" class="view_source">Source</a>
-  
-</section>
-<section class="detail">
-  <div class="detail_header" id="send_message/4">
-    <span class="signature"><strong>send_message(sock, message, message_type, content)</strong></span>
-    <div class="detail_header_links">
-      <span class="detail_type">(function)</span>
-      <a href="#send_message/4" class="detail_link" title="Link to this function">#</a>
-      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
-    </div>
-  </div>
-  
-  <section class="docstring">
-    
-  </section>
-  
-    <a href="https://github.com/pprzetacznik/IElixir/blob/master/lib/ielixir/socket/shell.ex#L143" class="view_source">Source</a>
-  
-</section>
-<section class="detail">
-  <div class="detail_header" id="start_link/1">
-    <span class="signature"><strong>start_link(opts)</strong></span>
-    <div class="detail_header_links">
-      <span class="detail_type">(function)</span>
-      <a href="#start_link/1" class="detail_link" title="Link to this function">#</a>
-      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
-    </div>
-  </div>
-  
-  <section class="docstring">
-    
-  </section>
-  
-    <a href="https://github.com/pprzetacznik/IElixir/blob/master/lib/ielixir/socket/shell.ex#L9" class="view_source">Source</a>
-  
-</section>
-
-        </section>
       
 
       

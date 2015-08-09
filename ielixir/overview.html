@@ -52,6 +52,10 @@
 <tr>
   <td class="summary_signature"><a href="IElixir.Message.html">IElixir.Message</a></td>
   
+    <td class="summary_synopsis"><p>This is documentation for Message structure and some utils that helps in
+encoding, parsing, assembling and sending messages</p>
+</td>
+  
 </tr>
 <tr>
   <td class="summary_signature"><a href="IElixir.Sandbox.html">IElixir.Sandbox</a></td>
@@ -63,25 +67,62 @@
 <tr>
   <td class="summary_signature"><a href="IElixir.Socket.Control.html">IElixir.Socket.Control</a></td>
   
+    <td class="summary_synopsis"><p>“Control: This channel is identical to Shell, but operates on a separate
+socket, to allow important messages to avoid queueing behind execution
+requests (e.g. shutdown or abort).”
+From <a href="https://ipython.org/ipython-doc/dev/development/messaging.html">https://ipython.org/ipython-doc/dev/development/messaging.html</a></p>
+</td>
+  
 </tr>
 <tr>
   <td class="summary_signature"><a href="IElixir.Socket.Heartbeat.html">IElixir.Socket.Heartbeat</a></td>
+  
+    <td class="summary_synopsis"><p>This is module responsible for handling Heartbeat requests</p>
+</td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="IElixir.Socket.IOPub.html">IElixir.Socket.IOPub</a></td>
   
+    <td class="summary_synopsis"><p>“IOPub: this socket is the ‘broadcast channel’ where the kernel publishes all
+side effects (stdout, stderr, etc.) as well as the requests coming from any
+client over the shell socket and its own requests on the stdin socket.”
+From <a href="https://ipython.org/ipython-doc/dev/development/messaging.html">https://ipython.org/ipython-doc/dev/development/messaging.html</a></p>
+</td>
+  
 </tr>
 <tr>
   <td class="summary_signature"><a href="IElixir.Socket.Shell.html">IElixir.Socket.Shell</a></td>
+  
+    <td class="summary_synopsis"><p>“Shell: this single ROUTER socket allows multiple incoming connections from
+frontends, and this is the socket where requests for code execution, object
+information, prompts, etc. are made to the kernel by any frontend.
+The communication on this socket is a sequence of request/reply actions from
+each frontend and the kernel.”
+From <a href="https://ipython.org/ipython-doc/dev/development/messaging.html">https://ipython.org/ipython-doc/dev/development/messaging.html</a></p>
+</td>
   
 </tr>
 <tr>
   <td class="summary_signature"><a href="IElixir.Socket.StdIn.html">IElixir.Socket.StdIn</a></td>
   
+    <td class="summary_synopsis"><p>“Stdin: this ROUTER socket is connected to all frontends, and it allows
+the kernel to request input from the active frontend when raw_input()
+is called. The frontend that executed the code has a DEALER socket that acts
+as a ‘virtual keyboard’ for the kernel while this communication is happening
+(illustrated in the figure by the black outline around the central keyboard).
+In practice, frontends may display such kernel requests using a special input
+widget or otherwise indicating that the user is to type input for the kernel
+instead of normal commands in the frontend.”
+From <a href="https://ipython.org/ipython-doc/dev/development/messaging.html">https://ipython.org/ipython-doc/dev/development/messaging.html</a></p>
+</td>
+  
 </tr>
 <tr>
   <td class="summary_signature"><a href="IElixir.Supervisor.html">IElixir.Supervisor</a></td>
+  
+    <td class="summary_synopsis"><p>This is supervisor module. Takes care if everything is working</p>
+</td>
   
 </tr>
 <tr>
