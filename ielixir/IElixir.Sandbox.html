@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>IElixir.Sandbox</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" charset="utf-8" />
+    <link rel="stylesheet" href="css/elixir.css" type="text/css" media="screen" charset="utf-8" />
+    <script type="text/javascript" charset="utf-8">
+      relpath = '';
+      if (relpath != '') relpath += '/';
+    </script>
+
+    <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+    <script type="text/javascript" charset="utf-8" src="js/highlight.pack.js"></script>
+    <script type="text/javascript" charset="utf-8">
+      hljs.initHighlightingOnLoad();
+      hljs.configure({languages: []}); //disable autodetect
+    </script>
+  </head>
+
+  <body>
+    <script type="text/javascript" charset="utf-8">
+      if (window.top.frames.main) document.body.className = 'frames';
+    </script>
+
+    <section id="content">
+      <div class="breadcrumbs">IElixir v0.9.0-dev &rarr; <a href="overview.html">Overview</a> &rarr; <a href="IElixir.html">IElixir</a> &rarr; <a href="IElixir.Sandbox.html">Sandbox</a></div>
+      <h1>
+        IElixir.Sandbox
+        
+      </h1>
+
+      <ul class="summary_links">
+        
+          <li><a href="#summary">Summary</a></li>
+        
+        
+          <li><a href="#types_details">Types</a></li>
+        
+        
+          <li><a href="#functions_details">Functions</a></li>
+        
+        
+        
+      </ul>
+
+      
+        <section id="moduledoc" class="docstring">
+          <p>This is module responsible for running user’s code.</p>
+
+        </section>
+      
+
+      
+        <a href="https://github.com/pprzetacznik/IElixir/blob/master/lib/ielixir/sandbox.ex#L1" class="view_source">Source</a>
+      
+
+      
+        <h2 id="summary">Summary<span class="detail_header_links"><a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></span></h2>
+        <table class="summary">
+          <tr>
+  <td class="summary_signature"><a href="#clean/0">clean()</a></td>
+  
+    <td class="summary_synopsis"><p>Clean Sandbox’s binding, environment and scope so there’s loaded only Kernel,
+Kernel.Typespec and IEx.Helpers modules</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#execute_code/1">execute_code(request)</a></td>
+  
+    <td class="summary_synopsis"><p>Execute passed request</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#get_code_completion/1">get_code_completion(code)</a></td>
+  
+    <td class="summary_synopsis"><p>Get code completion propositions suggested by IEx.Autocomplete.expand/1 function</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#get_execution_count/0">get_execution_count()</a></td>
+  
+    <td class="summary_synopsis"><p>Get value of execution counter saved in state of Sandbox</p>
+</td>
+  
+</tr>
+<tr>
+  <td class="summary_signature"><a href="#is_complete_code/1">is_complete_code(code)</a></td>
+  
+    <td class="summary_synopsis"><p>Checks if provided code is complete or client should wait for more, eg. there
+is unclosed parenthesis</p>
+</td>
+  
+</tr>
+
+        </table>
+      
+
+      
+        <section id="types_details" class="details_list">
+          <h2>Types <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a></h2>
+          <div class="type_detail">
+  <p class="typespec" id="t:yes_or_no/0">
+    <a href="#t:yes_or_no/0">yes_or_no</a> :: :yes | :no
+  </p>
+  
+      <div class="typespec_doc"><p>Yes or no atoms</p>
+</div>
+  
+</div>
+<div class="type_detail">
+  <p class="typespec" id="t:execution_response/0">
+    <a href="#t:execution_response/0">execution_response</a> :: {:ok, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, integer} | {:error, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, [<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>]}
+  </p>
+  
+      <div class="typespec_doc"><p>Execution response</p>
+</div>
+  
+</div>
+
+        </section>
+      
+
+      
+        <section id="functions_details" class="details_list">
+          <h2>Functions</h2>
+          <section class="detail">
+  <div class="detail_header" id="clean/0">
+    <span class="signature"><strong>clean()</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#clean/0" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>clean :: :ok</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Clean Sandbox’s binding, environment and scope so there’s loaded only Kernel,
+Kernel.Typespec and IEx.Helpers modules.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; IElixir.Sandbox.clean()
+:ok</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/pprzetacznik/IElixir/blob/master/lib/ielixir/sandbox.ex#L34" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="execute_code/1">
+    <span class="signature"><strong>execute_code(request)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#execute_code/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>execute_code(%{}) :: <a href="#t:execution_response/0">execution_response</a></li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Execute passed request</p>
+<h3>Examples</h3>
+<pre><code class="iex elixir">iex&gt; IElixir.Sandbox.execute_code(%{&quot;code&quot; =&gt; &quot;a=10&quot;})
+{:ok, &quot;10&quot;, &quot;&quot;, 1}
+iex&gt; IElixir.Sandbox.execute_code(%{&quot;code&quot; =&gt; &quot;b=25&quot;})
+{:ok, &quot;25&quot;, &quot;&quot;, 2}
+iex&gt; IElixir.Sandbox.execute_code(%{&quot;code&quot; =&gt; &quot;IO.puts(a+b)&quot;})
+{:ok, &quot;:ok&quot;, &quot;35\n&quot;, 3}
+iex&gt; IElixir.Sandbox.execute_code(%{&quot;code&quot; =&gt; &quot;a+b&quot;})
+{:ok, &quot;35&quot;, &quot;&quot;, 4}
+
+iex&gt; IElixir.Sandbox.execute_code(%{&quot;code&quot; =&gt; &quot;:sampleatom&quot;})
+{:ok, &quot;:sampleatom&quot;, &quot;&quot;, 1}
+
+iex&gt; IElixir.Sandbox.execute_code(%{&quot;code&quot; =&gt; &quot;asdf&quot;})
+{:error, &quot;CompileError&quot;, [&quot;** (CompileError) console:1 \&quot;undefined function asdf/0\&quot;&quot;]}</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/pprzetacznik/IElixir/blob/master/lib/ielixir/sandbox.ex#L101" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="get_code_completion/1">
+    <span class="signature"><strong>get_code_completion(code)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#get_code_completion/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>get_code_completion(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: {<a href="#t:yes_or_no/0">yes_or_no</a>, <a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>, [<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>]}</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Get code completion propositions suggested by IEx.Autocomplete.expand/1 function.</p>
+<h2>Examples</h2>
+<pre><code class="iex elixir">iex&gt; IElixir.Sandbox.get_code_completion(&quot;En&quot;)
+{:yes, &quot;um&quot;, []}
+
+iex&gt; IElixir.Sandbox.get_code_completion(&quot;asdf&quot;)
+{:no, &quot;&quot;, []}
+
+iex&gt; IElixir.Sandbox.get_code_completion(&quot;h&quot;)
+{:yes, &quot;&quot;, [&quot;h/0&quot;, &quot;h/1&quot;, &quot;hd/1&quot;]}
+
+iex&gt; IElixir.Sandbox.get_code_completion(&quot;Enum&quot;)
+{:yes, &quot;&quot;, [&quot;Enum&quot;, &quot;Enumerable&quot;]}</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/pprzetacznik/IElixir/blob/master/lib/ielixir/sandbox.ex#L57" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="get_execution_count/0">
+    <span class="signature"><strong>get_execution_count()</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#get_execution_count/0" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>get_execution_count :: integer</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Get value of execution counter saved in state of Sandbox.</p>
+<h3>Examples</h3>
+<pre><code class="iex elixir">iex&gt; IElixir.Sandbox.get_execution_count()
+1
+iex&gt; IElixir.Sandbox.execute_code(%{&quot;code&quot; =&gt; &quot;a=10&quot;})
+{:ok, &quot;10&quot;, &quot;&quot;, 1}
+iex&gt; IElixir.Sandbox.get_execution_count()
+2</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/pprzetacznik/IElixir/blob/master/lib/ielixir/sandbox.ex#L75" class="view_source">Source</a>
+  
+</section>
+<section class="detail">
+  <div class="detail_header" id="is_complete_code/1">
+    <span class="signature"><strong>is_complete_code(code)</strong></span>
+    <div class="detail_header_links">
+      <span class="detail_type">(function)</span>
+      <a href="#is_complete_code/1" class="detail_link" title="Link to this function">#</a>
+      <a class="to_top_link" href="#content" title="To the top of the page">&uarr;</a>
+    </div>
+  </div>
+  
+    <p>Specs:</p>
+    <ul class="spec">
+      
+        <li>is_complete_code(<a href="http://elixir-lang.org/docs/stable/elixir/String.html#t:t/0">String.t</a>) :: :complete | :invalid | :incomplete</li>
+      
+    </ul>
+  
+  <section class="docstring">
+    <p>Checks if provided code is complete or client should wait for more, eg. there
+is unclosed parenthesis.</p>
+<h3>Examples</h3>
+<pre><code class="iex elixir">iex&gt; IElixir.Sandbox.is_complete_code(&quot;a = 10&quot;)
+:complete
+iex&gt; IElixir.Sandbox.is_complete_code(&quot;a + b&quot;)
+:invalid
+iex&gt; IElixir.Sandbox.is_complete_code(&quot;case x do&quot;)
+:incomplete</code></pre>
+
+  </section>
+  
+    <a href="https://github.com/pprzetacznik/IElixir/blob/master/lib/ielixir/sandbox.ex#L120" class="view_source">Source</a>
+  
+</section>
+
+        </section>
+      
+
+      
+
+      
+    </section>
+  </body>
+</html>
