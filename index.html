@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head lang="en">
@@ -20,19 +19,6 @@
 var g_nextExample = '';
 var g_currentExample = '';
 window.onload = function() {
-    $('.exampleLink').on('click', function (evt) {
-        loadExample($(this).attr('data-example'));
-    });
-    $('#btnReloadExample').on('click', function (evt) {
-        loadExample(g_currentExample);
-    });
-    $('#btnApplyChanges').on('click', function (evt) {
-        applyCodeChanges();
-    });
-    $('#numFrames').on('change', function (evt) {
-        changeStepFrames();
-    });
-
     loadExample('project_ants');
 
     var myCanvas, ctx, renderer, stage, meter, textures, pixels;
@@ -42,46 +28,37 @@ window.onload = function() {
     function loop() {
 
         if (g_nextExample !== null) {
-            try {
-                world = window[g_nextExample]();
+			world = window[g_nextExample]();
 
-                myCanvas = document.getElementById('myCanvas');
-                myCanvas.width = world.cellSize * world.width;
-                myCanvas.height = world.cellSize * world.height;
+			myCanvas = document.getElementById('myCanvas');
+			myCanvas.width = world.cellSize * world.width;
+			myCanvas.height = world.cellSize * world.height;
 
-                //renderer = PIXI.autoDetectRenderer(myCanvas.width, myCanvas.height, { view: myCanvas });
-                renderer = renderer || new PIXI.autoDetectRenderer(myCanvas.width, myCanvas.height, myCanvas, null, true);
+			//renderer = PIXI.autoDetectRenderer(myCanvas.width, myCanvas.height, { view: myCanvas });
+			renderer = renderer || new PIXI.autoDetectRenderer(myCanvas.width, myCanvas.height, myCanvas, null, true);
 
-                // create the root of the scene graph
-                //stage = new PIXI.Container();
-                stage = stage || new PIXI.Stage(0xFFFFFF);
+			// create the root of the scene graph
+			//stage = new PIXI.Container();
+			stage = stage || new PIXI.Stage(0xFFFFFF);
 
-                textures = [];
-                pixels = [];
+			textures = [];
+			pixels = [];
 
-                var textureCanvas = document.createElement('canvas');
-                textureCanvas.width = world.cellSize * world.palette.length;
-                textureCanvas.height = world.cellSize;
-                var textureCtx = textureCanvas.getContext('2d');
-                for (var i=0; i<world.palette.length; i++) {
-                    textureCtx.fillStyle = 'rgba(' + world.palette[i] + ')';
-                    textureCtx.fillRect(i*world.cellSize, 0, world.cellSize, world.cellSize);
-                }
-                var baseTexture = new PIXI.BaseTexture.fromCanvas(textureCanvas);
-                for (var i=0; i<world.palette.length; i++) {
-                    textures.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(i*world.cellSize, 0, world.cellSize, world.cellSize)));
-                }
+			var textureCanvas = document.createElement('canvas');
+			textureCanvas.width = world.cellSize * world.palette.length;
+			textureCanvas.height = world.cellSize;
+			var textureCtx = textureCanvas.getContext('2d');
+			for (var i=0; i<world.palette.length; i++) {
+				textureCtx.fillStyle = 'rgba(' + world.palette[i] + ')';
+				textureCtx.fillRect(i*world.cellSize, 0, world.cellSize, world.cellSize);
+			}
+			var baseTexture = new PIXI.BaseTexture.fromCanvas(textureCanvas);
+			for (var i=0; i<world.palette.length; i++) {
+				textures.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(i*world.cellSize, 0, world.cellSize, world.cellSize)));
+			}
 
 
-                drawGrid(pixels, world, stage, textures);
-
-                $('#btnApplyChanges').removeClass('btn-danger');
-                $('#btnApplyChanges').addClass('btn-success');
-            } catch (ex) {
-                console.log(ex);
-                $('#btnApplyChanges').removeClass('btn-success');
-                $('#btnApplyChanges').addClass('btn-danger');
-            }
+			drawGrid(pixels, world, stage, textures);
             g_nextExample = null;
         }
         // limit speed of simulation
@@ -96,27 +73,14 @@ window.onload = function() {
         frames++;
     };
 
-    changeStepFrames();
     requestAnimationFrame(loop);
 }
 
-var g_stepFrames = 1;
-function changeStepFrames() {
-    g_stepFrames = parseInt($('#numFrames').val(), 10);
-}
+var g_stepFrames = 3;
 
 function loadExample(example) {
     g_currentExample = example;
     g_nextExample = example;
-}
-
-function applyCodeChanges() {
-    var exampleText = $('#exampleCode').text();
-    var lines = exampleText.split('\n');
-    lines.pop();
-    lines.shift();
-    window.example_userCreated = new Function(lines.join('\n'));
-    loadExample('userCreated');
 }
 
 function updateGrid(pixels, world, textures) {
@@ -150,30 +114,7 @@ function drawGrid(pixels, world, stage, textures) {
     </script>
 </head>
 <body>
-
-    <div class="container">
-        <div class="jumbotron">
-            <div class="row">
-                <div class="col-md-2">
-                </div>
-                <div class="col-md-8" style="text-align: center">
-                    <canvas id="myCanvas"></canvas>
-                </div>
-                <div class="col-md-2" style="text-align: center">
-                    <br>
-                    <div title="Animation frames per step">
-                        <span class="glyphicon glyphicon-time"></span>&nbsp;<input id="numFrames" type="number" value="3" min="1" style="width: 48px" />
-                    </div>
-                    <br>
-                    <button id="btnReloadExample" class="btn btn-default">Reload</button>
-                </div>
-            </div>
-        </div>
-
-    </div> <!-- /container -->
-
-
-
+	<canvas id="myCanvas"></canvas>	
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
 </html>

@@ -65,9 +65,11 @@ function project_ants() {
 	}
 	
 	var world = new CAWorld({
-		width: 96,
-		height: 64,
-		cellSize: 6
+		//width: 96,
+		//height: 64,
+		width: Math.floor(window.innerWidth / 20),
+		height: Math.floor(window.innerHeight / 20),
+		cellSize: 20
 	});
 	
 	var M = 100;
@@ -207,7 +209,7 @@ function project_ants() {
 				}
 				if (I > 0)
 					DE = DE % I;
-				console.log("Zaalokowana energia: " + DE);
+				console.log("Zalokowana energia: " + DE);
 				if (DE >= Energy)
 					console.log("MINĘŁO: " + step + " kroków od początku");
 				else

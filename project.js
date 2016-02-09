@@ -1,4 +1,4 @@
-function anonymous() {
+function project_ants() {
 	function getRandomInt(min, max) {
 		return Math.floor(Math.random() * (max - min)) + min;
 	}
@@ -187,7 +187,7 @@ function anonymous() {
 				}
 				if (I > 0)
 					DE = DE % I;
-				console.log("Zaalokowana energia: " + DE);
+				console.log("Zalokowana energia: " + DE);
 				if (M == 0)
 					console.log("MINĘŁO: " + step + " kroków od początku");
 				else
