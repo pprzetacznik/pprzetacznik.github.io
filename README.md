@@ -1,83 +1,83 @@
-# Modelowanie rzeczywistoœci w symulacji i grafice komputerowej
+# Modelowanie rzeczywistoÅ›ci w symulacji i grafice komputerowej
 
-## Projekt zaliczeniowy - modelowanie dobra i z³a / __Piotr Przetacznik__
+## Projekt zaliczeniowy - modelowanie dobra i zÅ‚a / __Piotr Przetacznik__
 
-### Wstêp
+### WstÄ™p
 
-Do realizacji projektu u¿y³em biblioteki cellauto.js, któr¹ mo¿na pobraæ ze strony https://sanojian.github.io/cellauto/. Zgodnie z poleceniem zamodelowa³em osobniki (mrówki), które poruszaj¹ siê po planszy. Osobniki te w ka¿dym kolejnym kroku trac¹ jedn¹ jednostkê energii. Suma energii w ca³ym uk³adzie jest równa liczbie:
+Do realizacji projektu uÅ¼yÅ‚em biblioteki cellauto.js, ktÃ³rÄ… moÅ¼na pobraÄ‡ ze strony https://sanojian.github.io/cellauto/. Zgodnie z poleceniem zamodelowaÅ‚em osobniki (mrÃ³wki), ktÃ³re poruszajÄ… siÄ™ po planszy. Osobniki te w kaÅ¼dym kolejnym kroku tracÄ… jednÄ… jednostkÄ™ energii. Suma energii w caÅ‚ym ukÅ‚adzie jest rÃ³wna liczbie:
 
 ```
 E = world.width * world.height
 ```
 
-Energia tracona przez wszystkie cz¹steczki akumulowana jest w akumulatorze: `EM`. Suma energii wszystkich cz¹steczek oraz energii zakumulowanej `EM` jest sta³a i wynosi `E`.
+Energia tracona przez wszystkie czÄ…steczki akumulowana jest w akumulatorze: `EM`. Suma energii wszystkich czÄ…steczek oraz energii zakumulowanej `EM` jest staÅ‚a i wynosi `E`.
 
-Mrówki w ka¿dym kroku oddaj¹ energiê, jednak mog¹ j¹ zwiêkszyæ je¿eli wejd¹ w kolizjê z innymi mrówkami. W takim wypadku energia `EM` jest dzielona na iloœæ kolizji w danej jednostce czasu (I) oraz w obrêbie kolizji jest rozprowadzana zgodnie na cztery sposoby:
-* sprawiedliwy - energia `EM / I` dzielona jest po równo na wszystkich uczestników kolizji,
-* altruistyczny - uczestnicy kolizji sumuj¹ energiê z energi¹ `EM / I`, a nastêpnie rozdzielaj¹ j¹ równomiernie miêdzy wszystkich uczestników kolizji,
-* z³y - uczestnik kolizji z najwiêksz¹ iloœci¹ energii zabiera ca³¹ energiê `EM / I`,
-* bardzo z³y - uczestnik kolizji z najwiêksz¹ iloœci¹ energii zabiera ca³¹ energiê `EM / I` oraz energiê pozosta³ych uczestników kolizji zabijaj¹c ich przy tym.
+MrÃ³wki w kaÅ¼dym kroku oddajÄ… energiÄ™, jednak mogÄ… jÄ… zwiÄ™kszyÄ‡ jeÅ¼eli wejdÄ… w kolizjÄ™ z innymi mrÃ³wkami. W takim wypadku energia `EM` jest dzielona na iloÅ›Ä‡ kolizji w danej jednostce czasu (I) oraz w obrÄ™bie kolizji jest rozprowadzana zgodnie na cztery sposoby:
+* sprawiedliwy - energia `EM / I` dzielona jest po rÃ³wno na wszystkich uczestnikÃ³w kolizji,
+* altruistyczny - uczestnicy kolizji sumujÄ… energiÄ™ z energiÄ… `EM / I`, a nastÄ™pnie rozdzielajÄ… jÄ… rÃ³wnomiernie miÄ™dzy wszystkich uczestnikÃ³w kolizji,
+* zÅ‚y - uczestnik kolizji z najwiÄ™kszÄ… iloÅ›ciÄ… energii zabiera caÅ‚Ä… energiÄ™ `EM / I`,
+* bardzo zÅ‚y - uczestnik kolizji z najwiÄ™kszÄ… iloÅ›ciÄ… energii zabiera caÅ‚Ä… energiÄ™ `EM / I` oraz energiÄ™ pozostaÅ‚ych uczestnikÃ³w kolizji zabijajÄ…c ich przy tym.
 
 ### Realizacja
 
-Mrówki w projekcie poruszaj¹ siê na dwa sposoby:
-* za pomoc¹ losowego algorytmu,
-* za pomoc¹ algorytmu znanego z automatu Mrówki Langtona.
+MrÃ³wki w projekcie poruszajÄ… siÄ™ na dwa sposoby:
+* za pomocÄ… losowego algorytmu,
+* za pomocÄ… algorytmu znanego z automatu MrÃ³wki Langtona.
 
-Aby nie zaciemniaæ przekazu eksperymentu kod Ÿród³owy dla obu rozwi¹zañ zosta³ umieszczony na koñcu sprawozdania. Na uwagê zas³uguj¹ 4 funkcje:
+Aby nie zaciemniaÄ‡ przekazu eksperymentu kod ÅºrÃ³dÅ‚owy dla obu rozwiÄ…zaÅ„ zostaÅ‚ umieszczony na koÅ„cu sprawozdania. Na uwagÄ™ zasÅ‚ugujÄ… 4 funkcje:
 * `fixCollisionsFair()`
 * `fixCollisionsAltruistic()`
 * `fixCollisionsBad()`
 * `fixCollisionsVeryBad()`.
-Funkcje te rozwi¹zuj¹ kolizje na 4 ró¿ne sposoby, opisane we wstêpie.
+Funkcje te rozwiÄ…zujÄ… kolizje na 4 rÃ³Å¼ne sposoby, opisane we wstÄ™pie.
 
-W przyk³adach stworzy³em œwiat o wymiarach 96x64, a liczbê mrówego ustali³em na 100. Mrówki w zale¿noœci od tego czy maj¹ du¿o energii czy ma³o mog¹ byæ bardzo czerwone lub jasnoczerwone.
+W przykÅ‚adach stworzyÅ‚em Å›wiat o wymiarach 96x64, a liczbÄ™ mrÃ³wego ustaliÅ‚em na 100. MrÃ³wki w zaleÅ¼noÅ›ci od tego czy majÄ… duÅ¼o energii czy maÅ‚o mogÄ… byÄ‡ bardzo czerwone lub jasnoczerwone.
 
-Demo projektu dostêpne jest pod adresem: http://pprzetacznik.github.io gdzie mo¿na uruchomiæ przyk³ad z Mrówk¹ Langtona z  rozwi¹zywaniem kolizji w sposób altruistyczny.
+Demo projektu dostÄ™pne jest pod adresem: http://pprzetacznik.github.io gdzie moÅ¼na uruchomiÄ‡ przykÅ‚ad z MrÃ³wkÄ… Langtona z  rozwiÄ…zywaniem kolizji w sposÃ³b altruistyczny.
 
-Kody dostêpne na koñcu sprawozdania mo¿na równie¿ uruchomiæ na stronie https://sanojian.github.io/cellauto.
+Kody dostÄ™pne na koÅ„cu sprawozdania moÅ¼na rÃ³wnieÅ¼ uruchomiÄ‡ na stronie https://sanojian.github.io/cellauto.
 
 ### Wnioski z projektu
 
-Modele zosta³y przetestowane pod wzglêdem d³ugoœci ¿ycia. Zauwa¿alne jest to, ¿e sposób poruszania mrówek ca³kowicie zmienia wyniki.
+Modele zostaÅ‚y przetestowane pod wzglÄ™dem dÅ‚ugoÅ›ci Å¼ycia. ZauwaÅ¼alne jest to, Å¼e sposÃ³b poruszania mrÃ³wek caÅ‚kowicie zmienia wyniki.
 
-| algorytm rozwi¹zywania kolizji | losowy algorytm poruszania | poruszanie wg zasad automatu Mrówki Langtona |
+| algorytm rozwiÄ…zywania kolizji | losowy algorytm poruszania | poruszanie wg zasad automatu MrÃ³wki Langtona |
 |--------------------------------|----------------------------|----------------------------------------------|
-| sprawiedliwy                   | 3215                       | program siê nie koñczy                       |
-| altruistyczny                  | 6144                       | program siê nie koñczy                       |
-| z³y                            | 1405                       | 5299                                         |
-| bardzo z³y                     | 3232                       | 1368                                         |
+| sprawiedliwy                   | 3215                       | program siÄ™ nie koÅ„czy                       |
+| altruistyczny                  | 6144                       | program siÄ™ nie koÅ„czy                       |
+| zÅ‚y                            | 1405                       | 5299                                         |
+| bardzo zÅ‚y                     | 3232                       | 1368                                         |
 
-Wyniki te s¹ przyk³adowe, zdajê sobie sprawê, ¿e iloœæ eksperymentów nie jest wystarczaj¹ca do tego, ¿eby wysuwaæ daleko id¹ce wnioski naukowe niemniej jednak poni¿sze wnioski równie¿ mog¹ wydaæ siê ciekawe.
+Wyniki te sÄ… przykÅ‚adowe, zdajÄ™ sobie sprawÄ™, Å¼e iloÅ›Ä‡ eksperymentÃ³w nie jest wystarczajÄ…ca do tego, Å¼eby wysuwaÄ‡ daleko idÄ…ce wnioski naukowe niemniej jednak poniÅ¼sze wnioski rÃ³wnieÅ¼ mogÄ… wydaÄ‡ siÄ™ ciekawe.
 
-#### Mrówki poruszaj¹ce siê w sposób losowy
+#### MrÃ³wki poruszajÄ…ce siÄ™ w sposÃ³b losowy
 
-W przypadku losowego algorytmu poruszania siê mo¿na zauwa¿yæ, ¿e altruistyczny model mo¿e ¿yæ d³u¿ej. Mo¿e to byæ zwi¹zane z tym, ¿e dziel¹c energiê zakumulowan¹ w taki sposób, ¿eby wyrównaæ energiê wszystkich mrówek zwiêkszamy prawdopodobieñstwo tego, ¿e mrówki ponownie wejd¹ z kimœ w kolizjê i siêgn¹ po energiê zakumulowan¹. W przypadku podejœæ egoistycznych faktycznie jakaœ mrówka osi¹gnie wiêksz¹ energiê, jednak je¿eli wymr¹ pozosta³e mrówki to najsilniejsza mrówka nie bêdzie mia³a z kim wejœæ w kolizjê, ¿eby siêgn¹æ do energi zakumulowanej uk³adu i powiêkszyæ swoj¹ energiê, aby d³u¿ej prze¿yæ. W przypadku "bardzo z³ego" sposobu rozwi¹zywania konfliktu mo¿emy zauwa¿yæ, ¿e jedna mrówka dominuje inne mrówki, ¿eby przez wiêkszoœæ swojego ¿ycia byæ sama i umrzeæ w samotnoœci. W obu sposobach rozwi¹zywania konfliktów za pomoc¹ metod "z³ej" oraz "bardzo z³ej" uk³ad bardzo szybko staje siê rzadki. W przypadku metod "sprawiedliwej" oraz "altruistycznej" mo¿na zaobserwowaæ, ¿e mrówki wymieraj¹ wspólnie, ale dlatego, ¿e nie potrafi¹ wejœæ ze sob¹ w kolizjê.
+W przypadku losowego algorytmu poruszania siÄ™ moÅ¼na zauwaÅ¼yÄ‡, Å¼e altruistyczny model moÅ¼e Å¼yÄ‡ dÅ‚uÅ¼ej. MoÅ¼e to byÄ‡ zwiÄ…zane z tym, Å¼e dzielÄ…c energiÄ™ zakumulowanÄ… w taki sposÃ³b, Å¼eby wyrÃ³wnaÄ‡ energiÄ™ wszystkich mrÃ³wek zwiÄ™kszamy prawdopodobieÅ„stwo tego, Å¼e mrÃ³wki ponownie wejdÄ… z kimÅ› w kolizjÄ™ i siÄ™gnÄ… po energiÄ™ zakumulowanÄ…. W przypadku podejÅ›Ä‡ egoistycznych faktycznie jakaÅ› mrÃ³wka osiÄ…gnie wiÄ™kszÄ… energiÄ™, jednak jeÅ¼eli wymrÄ… pozostaÅ‚e mrÃ³wki to najsilniejsza mrÃ³wka nie bÄ™dzie miaÅ‚a z kim wejÅ›Ä‡ w kolizjÄ™, Å¼eby siÄ™gnÄ…Ä‡ do energi zakumulowanej ukÅ‚adu i powiÄ™kszyÄ‡ swojÄ… energiÄ™, aby dÅ‚uÅ¼ej przeÅ¼yÄ‡. W przypadku "bardzo zÅ‚ego" sposobu rozwiÄ…zywania konfliktu moÅ¼emy zauwaÅ¼yÄ‡, Å¼e jedna mrÃ³wka dominuje inne mrÃ³wki, Å¼eby przez wiÄ™kszoÅ›Ä‡ swojego Å¼ycia byÄ‡ sama i umrzeÄ‡ w samotnoÅ›ci. W obu sposobach rozwiÄ…zywania konfliktÃ³w za pomocÄ… metod "zÅ‚ej" oraz "bardzo zÅ‚ej" ukÅ‚ad bardzo szybko staje siÄ™ rzadki. W przypadku metod "sprawiedliwej" oraz "altruistycznej" moÅ¼na zaobserwowaÄ‡, Å¼e mrÃ³wki wymierajÄ… wspÃ³lnie, ale dlatego, Å¼e nie potrafiÄ… wejÅ›Ä‡ ze sobÄ… w kolizjÄ™.
 
-Poni¿szy zrzut ekranu prezentuje stadium pocz¹tkowe modelu.
+PoniÅ¼szy zrzut ekranu prezentuje stadium poczÄ…tkowe modelu.
 ![first picture](http://student.agh.edu.pl/~smarter/upload/uploads/projekt_random.png)
 
-Poni¿szy zrzut ekranu prezentuje stadium koñcowe modelu.
+PoniÅ¼szy zrzut ekranu prezentuje stadium koÅ„cowe modelu.
 ![first picture](http://student.agh.edu.pl/~smarter/upload/uploads/projekt_random2.png)
 
-#### Mrówki poruszaj¹ce siê zgodnie z automatem Mrowka Langtona
+#### MrÃ³wki poruszajÄ…ce siÄ™ zgodnie z automatem Mrowka Langtona
 
-W przypadku rozwi¹zania z Mrówk¹ Langtona mamy mrówki, które chodz¹ po trawie. Czasami wpadaj¹ na siebie i nadpisujê swoj¹ wzajemn¹ pracê. Z tabeli ¿ycia mrówek mo¿na wywnioskowaæ, ¿e w przypadku u¿ycia "z³ego" sposobu rozwi¹zywania kolizji mrówki ¿yj¹ d³u¿ej ni¿ w przypadku "bardzo z³ego". Byæ mo¿e w przypadku tego drugiego sposobu mrówki ju¿ na samym pocz¹tku siê eliminuj¹ nawzajem nie daj¹c sobie zbyt wiele mo¿liwoœci do póŸniejszego stworzenia kolizji i siêgniêcia do energi zakumulowanej uk³adu. W przypadku algorytmów "sprawiedliwego" oraz "altruistycznego" warto zwróciæ uwagê na fakt, ¿e dwie mrówki wpadaj¹ we wspólny uk³ad kiedy cyklicznie wchodz¹ ze sob¹ w kolizjê za ka¿dym razem pobieraj¹c energiê zakumulowan¹ uk³adu. W przypadku takich uk³adów mrówki zostan¹ zawsze dokarmione i nigdy nie umr¹. Pod adresem: http://pprzetacznik.github.io mo¿na samemu wygenerowaæ sobie taki przypadek.
+W przypadku rozwiÄ…zania z MrÃ³wkÄ… Langtona mamy mrÃ³wki, ktÃ³re chodzÄ… po trawie. Czasami wpadajÄ… na siebie i nadpisujÄ™ swojÄ… wzajemnÄ… pracÄ™. Z tabeli Å¼ycia mrÃ³wek moÅ¼na wywnioskowaÄ‡, Å¼e w przypadku uÅ¼ycia "zÅ‚ego" sposobu rozwiÄ…zywania kolizji mrÃ³wki Å¼yjÄ… dÅ‚uÅ¼ej niÅ¼ w przypadku "bardzo zÅ‚ego". ByÄ‡ moÅ¼e w przypadku tego drugiego sposobu mrÃ³wki juÅ¼ na samym poczÄ…tku siÄ™ eliminujÄ… nawzajem nie dajÄ…c sobie zbyt wiele moÅ¼liwoÅ›ci do pÃ³Åºniejszego stworzenia kolizji i siÄ™gniÄ™cia do energi zakumulowanej ukÅ‚adu. W przypadku algorytmÃ³w "sprawiedliwego" oraz "altruistycznego" warto zwrÃ³ciÄ‡ uwagÄ™ na fakt, Å¼e dwie mrÃ³wki wpadajÄ… we wspÃ³lny ukÅ‚ad kiedy cyklicznie wchodzÄ… ze sobÄ… w kolizjÄ™ za kaÅ¼dym razem pobierajÄ…c energiÄ™ zakumulowanÄ… ukÅ‚adu. W przypadku takich ukÅ‚adÃ³w mrÃ³wki zostanÄ… zawsze dokarmione i nigdy nie umrÄ…. Pod adresem: http://pprzetacznik.github.io moÅ¼na samemu wygenerowaÄ‡ sobie taki przypadek.
 
-Poni¿szy zrzut ekranu prezentuje stadium pocz¹tkowe modelu.
-![first picture](http://student.agh.edu.pl/~smarter/upload/uploads/projekt_zdjêcie_2.png)
+PoniÅ¼szy zrzut ekranu prezentuje stadium poczÄ…tkowe modelu.
+![first picture](http://student.agh.edu.pl/~smarter/upload/uploads/projekt_zdjÄ™cie_2.png)
 
-Poni¿szy zrzut ekranu prezentuje stadium koñcowe modelu (typowe dla algorytmów "z³ego" oraz "bardzo z³ego").
-![first picture](http://student.agh.edu.pl/~smarter/upload/uploads/projekt_zdjêcie_1.png)
+PoniÅ¼szy zrzut ekranu prezentuje stadium koÅ„cowe modelu (typowe dla algorytmÃ³w "zÅ‚ego" oraz "bardzo zÅ‚ego").
+![first picture](http://student.agh.edu.pl/~smarter/upload/uploads/projekt_zdjÄ™cie_1.png)
 
-Poni¿sze zrzuty ekranu prezentuj¹ stadium kiedy uk³ad wpada w sytuacjê w której zawsze siêga do energii zakumulowanej przez co nigdy nie umrze.
-![first picture](http://student.agh.edu.pl/~smarter/upload/uploads/projekt_zdjêcie_altruistic_block.png)
-![first picture](http://student.agh.edu.pl/~smarter/upload/uploads/projekt_zdjêcie_fair_block.png)
+PoniÅ¼sze zrzuty ekranu prezentujÄ… stadium kiedy ukÅ‚ad wpada w sytuacjÄ™ w ktÃ³rej zawsze siÄ™ga do energii zakumulowanej przez co nigdy nie umrze.
+![first picture](http://student.agh.edu.pl/~smarter/upload/uploads/projekt_zdjÄ™cie_altruistic_block.png)
+![first picture](http://student.agh.edu.pl/~smarter/upload/uploads/projekt_zdjÄ™cie_fair_block.png)
 
 
-### Kody Ÿród³owe
+### Kody ÅºrÃ³dÅ‚owe
 
-#### Mrówki poruszaj¹ siê losowo
+#### MrÃ³wki poruszajÄ… siÄ™ losowo
 
 ```JavaScript
 function project_ants() {
@@ -101,7 +101,7 @@ function project_ants() {
 		gained_energy_rest = energy % antsInCollisions.length;
 		for (var i in antsInCollisions) {
 			ants[antsInCollisions[i]].energy += gained_energy;
-			console.log("Mrówka " + antsInCollisions[i] + " otrzyma³a " + gained_energy + " energii");
+			console.log("MrÃ³wka " + antsInCollisions[i] + " otrzymaÅ‚a " + gained_energy + " energii");
 		}
 		ants[antsInCollisions[0]].energy += gained_energy_rest;
 		console.log("Reszta energii z kolizji: " + gained_energy_rest);
@@ -116,7 +116,7 @@ function project_ants() {
 		gained_energy_rest = sum_of_energy % antsInCollisions.length;
 		for (var i in antsInCollisions) {
 			ants[antsInCollisions[i]].energy = gained_energy;
-			console.log("Mrówka " + antsInCollisions[i] + " otrzyma³a " + gained_energy + " energii");
+			console.log("MrÃ³wka " + antsInCollisions[i] + " otrzymaÅ‚a " + gained_energy + " energii");
 		}
 		ants[antsInCollisions[0]].energy += gained_energy_rest;
 		console.log("Reszta energii z kolizji: " + gained_energy_rest);
@@ -129,7 +129,7 @@ function project_ants() {
 				strongest_ant = i;
 		}
 		ants[antsInCollisions[strongest_ant]].energy += energy;
-		console.log("Mrówka " + antsInCollisions[strongest_ant] + " otrzyma³a " + energy + " energii");
+		console.log("MrÃ³wka " + antsInCollisions[strongest_ant] + " otrzymaÅ‚a " + energy + " energii");
 	}
 	
 	function fixCollisionsVeryBad(antsInCollisions, energy) {
@@ -143,7 +143,7 @@ function project_ants() {
 			ants[antsInCollisions[i]].energy = 0;
 		}
 		ants[antsInCollisions[strongest_ant]].energy = energy;
-		console.log("Mrówka " + antsInCollisions[strongest_ant] + " otrzyma³a " + energy + " energii");
+		console.log("MrÃ³wka " + antsInCollisions[strongest_ant] + " otrzymaÅ‚a " + energy + " energii");
 	}
 	
 	var world = new CAWorld({
@@ -255,7 +255,7 @@ function project_ants() {
 				}
 				ants = ants_new;
 				M = ants_new.length;
-				console.log("Liczba obiektów: " + M);
+				console.log("Liczba obiektÃ³w: " + M);
 				I = 0;
 				for (var key in pixels) {
 					if (pixels[key].length > 1)
@@ -271,7 +271,7 @@ function project_ants() {
 					DE = DE % I;
 				console.log("Zaalokowana energia: " + DE);
 				if (M == 0)
-					console.log("MINÊ£O: " + step + " kroków od pocz¹tku");
+					console.log("MINÄ˜ÅO: " + step + " krokÃ³w od poczÄ…tku");
 				else
 					step += 1;
 			}
@@ -288,7 +288,7 @@ function project_ants() {
 }
 ```
 
-#### Mrówki poruszaj¹ siê zgodnie z zasadami automatu Mrówka Langtona
+#### MrÃ³wki poruszajÄ… siÄ™ zgodnie z zasadami automatu MrÃ³wka Langtona
 
 ```JavaScript
 function project_ants() {
@@ -312,7 +312,7 @@ function project_ants() {
 		gained_energy_rest = energy % antsInCollisions.length;
 		for (var i in antsInCollisions) {
 			ants[antsInCollisions[i]].energy += gained_energy;
-			console.log("Mrówka " + antsInCollisions[i] + " otrzyma³a " + gained_energy + " energii");
+			console.log("MrÃ³wka " + antsInCollisions[i] + " otrzymaÅ‚a " + gained_energy + " energii");
 		}
 		ants[antsInCollisions[0]].energy += gained_energy_rest;
 		console.log("Reszta energii z kolizji: " + gained_energy_rest);
@@ -327,7 +327,7 @@ function project_ants() {
 		gained_energy_rest = sum_of_energy % antsInCollisions.length;
 		for (var i in antsInCollisions) {
 			ants[antsInCollisions[i]].energy = gained_energy;
-			console.log("Mrówka " + antsInCollisions[i] + " otrzyma³a " + gained_energy + " energii");
+			console.log("MrÃ³wka " + antsInCollisions[i] + " otrzymaÅ‚a " + gained_energy + " energii");
 		}
 		ants[antsInCollisions[0]].energy += gained_energy_rest;
 		console.log("Reszta energii z kolizji: " + gained_energy_rest);
@@ -340,7 +340,7 @@ function project_ants() {
 				strongest_ant = i;
 		}
 		ants[antsInCollisions[strongest_ant]].energy += energy;
-		console.log("Mrówka " + antsInCollisions[strongest_ant] + " otrzyma³a " + energy + " energii");
+		console.log("MrÃ³wka " + antsInCollisions[strongest_ant] + " otrzymaÅ‚a " + energy + " energii");
 	}
 	
 	function fixCollisionsVeryBad(antsInCollisions, energy) {
@@ -354,7 +354,7 @@ function project_ants() {
 			ants[antsInCollisions[i]].energy = 0;
 		}
 		ants[antsInCollisions[strongest_ant]].energy = energy;
-		console.log("Mrówka " + antsInCollisions[strongest_ant] + " otrzyma³a " + energy + " energii");
+		console.log("MrÃ³wka " + antsInCollisions[strongest_ant] + " otrzymaÅ‚a " + energy + " energii");
 	}
 	
 	var world = new CAWorld({
@@ -486,7 +486,7 @@ function project_ants() {
 				}
 				ants = ants_new;
 				M = ants_new.length;
-				console.log("Liczba obiektów: " + M);
+				console.log("Liczba obiektÃ³w: " + M);
 				I = 0;
 				for (var key in pixels) {
 					if (pixels[key].length > 1)
@@ -502,7 +502,7 @@ function project_ants() {
 					DE = DE % I;
 				console.log("Zaalokowana energia: " + DE);
 				if (DE >= Energy)
-					console.log("MINÊ£O: " + step + " kroków od pocz¹tku");
+					console.log("MINÄ˜ÅO: " + step + " krokÃ³w od poczÄ…tku");
 				else
 					step += 1;
 			}
