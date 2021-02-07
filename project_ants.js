@@ -13,7 +13,7 @@ function project_ants() {
 		}
 		return arr;
 	}
-	
+
 	function fixCollisionsFair(antsInCollisions, energy) {
 		gained_energy = Math.floor(energy / antsInCollisions.length);
 		gained_energy_rest = energy % antsInCollisions.length;
@@ -24,7 +24,7 @@ function project_ants() {
 		ants[antsInCollisions[0]].energy += gained_energy_rest;
 		console.log("Reszta energii z kolizji: " + gained_energy_rest);
 	}
-	
+
 	function fixCollisionsAltruistic(antsInCollisions, energy) {
 		sum_of_energy = energy;
 		for (var i in antsInCollisions) {
@@ -39,7 +39,7 @@ function project_ants() {
 		ants[antsInCollisions[0]].energy += gained_energy_rest;
 		console.log("Reszta energii z kolizji: " + gained_energy_rest);
 	}
-	
+
 	function fixCollisionsBad(antsInCollisions, energy) {
 		strongest_ant = 0;
 		for (var i in antsInCollisions) {
@@ -49,21 +49,21 @@ function project_ants() {
 		ants[antsInCollisions[strongest_ant]].energy += energy;
 		console.log("Mrówka " + antsInCollisions[strongest_ant] + " otrzymała " + energy + " energii");
 	}
-	
+
 	function fixCollisionsVeryBad(antsInCollisions, energy) {
 		strongest_ant = 0;
-		for (var i in antsInCollisions) {			
+		for (var i in antsInCollisions) {
 			if (ants[antsInCollisions[i]].energy > ants[antsInCollisions[strongest_ant]].energy)
 				strongest_ant = i;
 		}
-		for (var i in antsInCollisions) {			
+		for (var i in antsInCollisions) {
 			energy += ants[antsInCollisions[i]].energy;
 			ants[antsInCollisions[i]].energy = 0;
 		}
 		ants[antsInCollisions[strongest_ant]].energy = energy;
 		console.log("Mrówka " + antsInCollisions[strongest_ant] + " otrzymała " + energy + " energii");
 	}
-	
+
 	var world = new CAWorld({
 		//width: 96,
 		//height: 64,
@@ -71,7 +71,7 @@ function project_ants() {
 		height: Math.floor(window.innerHeight / 20),
 		cellSize: 20
 	});
-	
+
 	var M = 100;
 	var Energy = world.width * world.height;
 	var I;
@@ -91,7 +91,7 @@ function project_ants() {
 		'128, 0, 0, 1',
 		'125, 255, 125, 1',
 	];
-	
+
 	var ants = [];
 	for (var i = 0; i < M; ++i) {
 		ants.push({
@@ -102,10 +102,10 @@ function project_ants() {
 			alive: true,
 		});
 	}
-	
+
 	var pixels;
 	var collisions;
-	
+
 	world.registerCellType('living', {
 		getColor: function () {
 			var proportion = this.alive / Energy;

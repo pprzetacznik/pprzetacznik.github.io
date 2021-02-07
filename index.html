@@ -1,120 +1,34 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>cellauto.js</title>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <!--script src="//cdnjs.cloudflare.com/ajax/libs/pixi.js/3.0.7/pixi.min.js"></script-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/1.5.3/pixi.js"></script>
-    <script src="https://google-code-prettify.googlecode.com/svn/loader/run_prettify.js?skin=desert"></script>
-
-    <script src="./cellauto.js"></script>
-    <script src="./project_ants.js"></script>
-
-    <script>
-
-var g_nextExample = '';
-var g_currentExample = '';
-window.onload = function() {
-    loadExample('project_ants');
-
-    var myCanvas, ctx, renderer, stage, meter, textures, pixels;
-
-    var frames = 0;
-    var world;
-    function loop() {
-
-        if (g_nextExample !== null) {
-			world = window[g_nextExample]();
-
-			myCanvas = document.getElementById('myCanvas');
-			myCanvas.width = world.cellSize * world.width;
-			myCanvas.height = world.cellSize * world.height;
-
-			//renderer = PIXI.autoDetectRenderer(myCanvas.width, myCanvas.height, { view: myCanvas });
-			renderer = renderer || new PIXI.autoDetectRenderer(myCanvas.width, myCanvas.height, myCanvas, null, true);
-
-			// create the root of the scene graph
-			//stage = new PIXI.Container();
-			stage = stage || new PIXI.Stage(0xFFFFFF);
-
-			textures = [];
-			pixels = [];
-
-			var textureCanvas = document.createElement('canvas');
-			textureCanvas.width = world.cellSize * world.palette.length;
-			textureCanvas.height = world.cellSize;
-			var textureCtx = textureCanvas.getContext('2d');
-			for (var i=0; i<world.palette.length; i++) {
-				textureCtx.fillStyle = 'rgba(' + world.palette[i] + ')';
-				textureCtx.fillRect(i*world.cellSize, 0, world.cellSize, world.cellSize);
-			}
-			var baseTexture = new PIXI.BaseTexture.fromCanvas(textureCanvas);
-			for (var i=0; i<world.palette.length; i++) {
-				textures.push(new PIXI.Texture(baseTexture, new PIXI.Rectangle(i*world.cellSize, 0, world.cellSize, world.cellSize)));
-			}
-
-
-			drawGrid(pixels, world, stage, textures);
-            g_nextExample = null;
-        }
-        // limit speed of simulation
-        if(frames % g_stepFrames === 0) {
-            world.step();
-            updateGrid(pixels, world, textures);
-            renderer.render(stage);
-        }
-
-        requestAnimationFrame(loop);
-
-        frames++;
-    };
-
-    requestAnimationFrame(loop);
-}
-
-var g_stepFrames = 3;
-
-function loadExample(example) {
-    g_currentExample = example;
-    g_nextExample = example;
-}
-
-function updateGrid(pixels, world, textures) {
-
-    for (var y=0; y<world.height; y++) {
-        for (var x = 0; x < world.width; x++) {
-            var newColor = world.grid[y][x].getColor();
-            if (newColor !== world.grid[y][x].oldColor) {
-                pixels[x + y*world.width].setTexture(textures[newColor]);
-                world.grid[y][x].oldColor = newColor;
-            }
-        }
-    }
-}
-
-function drawGrid(pixels, world, stage, textures) {
-    try {
-        stage.removeChildren();
-    } catch (ex) { console.log(ex); }
-    for (var y=0; y<world.height; y++) {
-        for (var x=0; x<world.width; x++) {
-            var sprite = new PIXI.Sprite(textures[0]);
-            pixels[x + y*world.width] = sprite;
-            sprite.x = x*world.cellSize;
-            sprite.y = y*world.cellSize;
-            stage.addChild(sprite);
-        }
-    }
-}
-
-    </script>
-</head>
-<body>
-	<canvas id="myCanvas"></canvas>	
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-</body>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Start | Piotr Przetacznik blog</title>
+    <meta name="generator" content="VuePress 1.8.0">
+    
+    <meta name="description" content="">
+    
+    <link rel="preload" href="/assets/css/0.styles.fab77d47.css" as="style"><link rel="preload" href="/assets/js/app.61726d96.js" as="script"><link rel="preload" href="/assets/js/1.9a133ee8.js" as="script"><link rel="preload" href="/assets/js/14.113f1da9.js" as="script"><link rel="prefetch" href="/assets/js/10.b2550c01.js"><link rel="prefetch" href="/assets/js/11.32f7557b.js"><link rel="prefetch" href="/assets/js/12.44c8b6e9.js"><link rel="prefetch" href="/assets/js/13.d1115254.js"><link rel="prefetch" href="/assets/js/3.247834d9.js"><link rel="prefetch" href="/assets/js/4.696d3602.js"><link rel="prefetch" href="/assets/js/5.fa8ea1d4.js"><link rel="prefetch" href="/assets/js/6.41e8aa0e.js"><link rel="prefetch" href="/assets/js/7.2413b96b.js"><link rel="prefetch" href="/assets/js/8.cc56eb38.js"><link rel="prefetch" href="/assets/js/9.51701721.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.fab77d47.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div id="global-layout"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" aria-current="page" class="home-link router-link-exact-active router-link-active"><!----> <span class="site-name">Piotr Przetacznik blog</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/post/" class="nav-link">
+  Posts
+</a></div><div class="nav-item"><a href="/tag/" class="nav-link">
+  Tags
+</a></div><div class="nav-item"><a href="/about/" class="nav-link">
+  About
+</a></div><div class="nav-item"><a href="https://github.com/pprzetacznik" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/post/" class="nav-link">
+  Posts
+</a></div><div class="nav-item"><a href="/tag/" class="nav-link">
+  Tags
+</a></div><div class="nav-item"><a href="/about/" class="nav-link">
+  About
+</a></div><div class="nav-item"><a href="https://github.com/pprzetacznik" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></div> <!----></nav>  <!----> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="start"><a href="#start" class="header-anchor">#</a> Start</h1> <p>Please welcome to my blog</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.61726d96.js" defer></script><script src="/assets/js/1.9a133ee8.js" defer></script><script src="/assets/js/14.113f1da9.js" defer></script>
+  </body>
 </html>
